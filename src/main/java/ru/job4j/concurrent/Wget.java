@@ -9,7 +9,7 @@ public class Wget {
         thread.start();
         for (int i = 0; i <= 100; i++) {
             System.out.print("\rLoading :" + i + "%");
-            thread.sleep(1000);
+            Thread.sleep(1000);
         }
     }
 }
