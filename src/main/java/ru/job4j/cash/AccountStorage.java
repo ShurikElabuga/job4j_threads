@@ -23,14 +23,16 @@ public class AccountStorage {
     }
 
     public synchronized boolean transfer(int fromId, int toId, int amount) {
-        if (accounts.get(fromId) == null || accounts.get(toId) == null) {
+        Account fromAccount = accounts.get(fromId);
+        Account toAccount = accounts.get(toId);
+        if (fromAccount == null || toAccount == null) {
             return false;
         }
-        if (accounts.get(fromId).amount() < amount || amount <= 0) {
+        if (fromAccount.amount() < amount || amount <= 0) {
             return false;
         }
-        accounts.put(fromId, new Account(fromId, accounts.get(fromId).amount() - amount));
-        accounts.put(toId, new Account(toId, accounts.get(toId).amount() + amount));
+        accounts.put(fromId, new Account(fromId, fromAccount.amount() - amount));
+        accounts.put(toId, new Account(toId, toAccount.amount() + amount));
         return true;
     }
 }
