@@ -16,6 +16,10 @@ public class SimpleBlockingQueue<T> {
         this.size = size;
     }
 
+    public synchronized boolean isEmpty() {
+        return queue.isEmpty();
+    }
+
     public synchronized void offer(T value) throws InterruptedException {
         while (queue.size() > size) {
                 wait();
