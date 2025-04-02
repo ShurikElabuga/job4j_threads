@@ -40,9 +40,5 @@ public class ParallelSearch {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-
-
-
-
     }
 }
