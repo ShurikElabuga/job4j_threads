@@ -14,15 +14,14 @@ public class Cache {
     }
 
     public boolean update(Base model) throws OptimisticException {
-        Base value = memory.get(model.id());
-        if (value == null) {
-            return false;
-        }
-        if (value.version() != model.version()) {
-            throw new OptimisticException("Версии не совпадают.");
-        }
-        Base updated = new Base(model.id(), model.name(), model.version() + 1);
-        return memory.replace(model.id(), value, updated);
+        return memory.computeIfPresent(model.id(),
+                (key, value) -> {
+                    if (value.version() != model.version()) {
+                        throw new OptimisticException("Версии не совпадают.");
+                    }
+                    return new Base(key, model.name(), value.version() + 1);
+                }
+        ) != null;
     }
 
     public void delete(int id) {
