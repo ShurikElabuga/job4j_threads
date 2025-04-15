@@ -22,7 +22,6 @@ public class ParallelSearch<T> extends RecursiveTask<Integer> {
         if ((to - from) <= THRESHOLD) {
             return linerSearch(array, item, from, to);
         }
-
         int middle = (from + to) / 2;
         ParallelSearch<T> left = new ParallelSearch<>(array, item, from, middle);
         ParallelSearch<T> right = new ParallelSearch<>(array, item, middle, to);
@@ -30,7 +29,6 @@ public class ParallelSearch<T> extends RecursiveTask<Integer> {
         right.fork();
         int leftResult = left.join();
         int rightResult = right.join();
-
         return leftResult != -1 ? leftResult : rightResult;
     }
 

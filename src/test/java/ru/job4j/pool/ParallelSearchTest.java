@@ -32,6 +32,4 @@ class ParallelSearchTest {
         assertThat(ParallelSearch.search(array, 8.5)).isEqualTo(8);
         assertThat(ParallelSearch.search(array, 9.5)).isEqualTo(-1);
     }
-
-
 }
