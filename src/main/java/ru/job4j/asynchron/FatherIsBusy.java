@@ -90,7 +90,7 @@ public class FatherIsBusy {
 
     public static void thenComposeExample() throws Exception {
         CompletableFuture<String> result = goToTrash().thenCompose(a -> buyProduct("Молоко"));
-        result.get(); // wait calculations;
+        result.get();
     }
 
     public static void thenCombineExample() throws Exception {
