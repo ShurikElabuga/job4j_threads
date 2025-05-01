@@ -6,6 +6,7 @@ import java.util.concurrent.ExecutionException;
 public class RowColSum {
 
     public record Sums(int rowSum, int colSum) {
+
     }
 
     public static Sums[] sum(int[][] matrix) {
