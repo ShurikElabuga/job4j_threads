@@ -9,7 +9,7 @@ public class FatherIsBusy {
     private static void iWork() throws InterruptedException {
         int count = 0;
         while (count < 10) {
-            System.out.println("Вы: Я работаю" + LocalTime.now());
+            System.out.println("Вы: Я работаю");
             Thread.sleep(1000);
             count++;
         }
@@ -18,13 +18,13 @@ public class FatherIsBusy {
     public static CompletableFuture<Void> goToTrash() {
         return CompletableFuture.runAsync(
                 () -> {
-                    System.out.println("Сын: Мам/Пап, я пошел выносить мусор" + LocalTime.now());
+                    System.out.println("Сын: Мам/Пап, я пошел выносить мусор");
                     try {
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    System.out.println("Сын: Мам/Пап, я вернулся!" + LocalTime.now());
+                    System.out.println("Сын: Мам/Пап, я вернулся!");
                 }
         );
     }
@@ -37,13 +37,13 @@ public class FatherIsBusy {
     public static CompletableFuture<String> buyProduct(String product) {
         return CompletableFuture.supplyAsync(
                 () -> {
-                    System.out.println("Сын: Мам/Пап, я пошел в магазин, чтобы купить " + product +LocalTime.now());
+                    System.out.println("Сын: Мам/Пап, я пошел в магазин, чтобы купить " + product);
                     try {
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    System.out.println("Сын: Мам/Пап, я купил " + product +LocalTime.now());
+                    System.out.println("Сын: Мам/Пап, я купил " + product);
                     return product;
                 }
         );
@@ -53,7 +53,7 @@ public class FatherIsBusy {
         CompletableFuture<String> bm = buyProduct("Молоко");
 
         iWork();
-        System.out.println("Куплено: " + bm.get() +LocalTime.now());
+        System.out.println("Куплено: " + bm.get());
     }
 
     public static void thenRunExample() throws Exception {
@@ -61,7 +61,7 @@ public class FatherIsBusy {
         gtt.thenRun(() -> {
             int count = 0;
             while (count < 3) {
-                System.out.println("Сын: я мою руки" +LocalTime.now());
+                System.out.println("Сын: я мою руки");
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
@@ -69,16 +69,16 @@ public class FatherIsBusy {
                 }
                 count++;
             }
-            System.out.println("Сын: Я помыл руки" +LocalTime.now());
+            System.out.println("Сын: Я помыл руки");
         });
         iWork();
     }
 
     public static void thenAcceptExample() throws Exception {
         CompletableFuture<String> bm = buyProduct("Молоко");
-        bm.thenAccept((product) -> System.out.println("Сын: Я убрал " + product + " в холодильник " +LocalTime.now()));
+        bm.thenAccept((product) -> System.out.println("Сын: Я убрал " + product + " в холодильник "));
         iWork();
-        System.out.println("Куплено: " + bm.get() +LocalTime.now());
+        System.out.println("Куплено: " + bm.get());
     }
 
     public static void thenApplyExample() throws Exception {
